@@ -1,6 +1,6 @@
 const initialState = {
   // カテゴリ情報
-  categorys: [
+  categories: [
     {
       id: 1,
       name: 'すべてのカテゴリ',
@@ -16,4 +16,4 @@ const initialState = {
   ],
 };
 
-export default () => initialState();
+export default () => initialState;

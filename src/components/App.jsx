@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Ranking from './Ranking';
+import Ranking from '../containers/Ranking';
 
 const App = () => (
   <div className="App">

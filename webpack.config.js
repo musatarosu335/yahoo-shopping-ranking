@@ -5,6 +5,7 @@ const publicDir = path.join(__dirname, '/public');
 module.exports = [
   {
     entry: [
+      'babel-polyfill',
       './src/index.jsx',
     ],
     output: {

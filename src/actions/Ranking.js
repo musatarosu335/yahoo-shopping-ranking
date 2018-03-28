@@ -1,6 +1,6 @@
 import fetchJsonp from 'fetch-jsonp';
 import qs from 'qs';
-import ENV from '../../env.json';
+import ENV from '../../env';
 
 const API_URL = 'https://shopping.yahooapis.jp/ShoppingWebService/V1/json/categoryRanking';
 const APP_ID = ENV.CLIENT_ID;
@@ -32,7 +32,7 @@ const finishRequest = categoryId => ({
 });
 
 // ランキングを取得
-const fetchRanking = categoryId => (
+export const fetchRanking = categoryId => (
   async (dispatch) => {
     dispatch(startRequest(categoryId));
 

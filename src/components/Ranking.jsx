@@ -23,7 +23,7 @@ export default class Ranking extends React.Component {
 }
 
 Ranking.propTypes = {
-  categoryId: PropTypes.number,
+  categoryId: PropTypes.string,
   onMount: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

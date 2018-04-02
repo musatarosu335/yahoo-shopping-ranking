@@ -3,13 +3,14 @@ const getRanking = (response) => {
   const ranking = [];
   const itemLength = response.ResultSet.totalResultsReturned;
   for (let index = 0; index < itemLength; index += 1) {
-    const item = response.ResultSet['0'].Result[`index${''}`];
+    const item = response.ResultSet[0].Result[index];
     ranking.push({
       code: item.Code,
       name: item.Name,
       imageUrl: item.Image.Medium,
     });
   }
+  // console.log(ranking);
   return ranking;
 };
 

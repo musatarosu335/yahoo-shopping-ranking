@@ -44,8 +44,10 @@ export const fetchRanking = categoryId => (
     try {
       const response = await fetchJsonp(`${API_URL}?${queryString}`);
       const data = await response.json();
+      console.log(data);
       dispatch(receiveData(categoryId, null, data));
     } catch (err) {
+      console.log(err);
       dispatch(receiveData(categoryId, err));
     }
     dispatch(finishRequest(categoryId));

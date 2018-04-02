@@ -14,7 +14,6 @@ export default class Ranking extends React.Component {
 
   render() {
     const { category, ranking, error } = this.props;
-    console.log(category);
 
     if (error) {
       return (
@@ -53,6 +52,9 @@ Ranking.propTypes = {
   categoryId: PropTypes.string,
   onMount: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired,
+  ranking: PropTypes.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 Ranking.defaultProps = {

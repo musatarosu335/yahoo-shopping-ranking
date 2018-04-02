@@ -37,7 +37,6 @@ export const fetchRanking = categoryId => (
   async (dispatch, getState) => {
     const { categories } = getState().shopping;
     const category = categories.find(eachCategory => eachCategory.id === categoryId);
-    console.log(category);
     // 対応するデータがない場合はトップページにリダイレクト
     if (typeof category === 'undefined') {
       dispatch(replace('/'));

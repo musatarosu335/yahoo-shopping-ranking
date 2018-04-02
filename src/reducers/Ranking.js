@@ -7,6 +7,7 @@ const getRanking = (response) => {
     ranking.push({
       code: item.Code,
       name: item.Name,
+      url: item.Url,
       imageUrl: item.Image.Medium,
     });
   }

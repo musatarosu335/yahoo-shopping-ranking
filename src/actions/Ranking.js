@@ -1,40 +1,50 @@
 import fetchJsonp from 'fetch-jsonp';
 import qs from 'qs';
+import { replace } from 'react-router-redux';
 import ENV from '../../env';
 
 const API_URL = 'https://shopping.yahooapis.jp/ShoppingWebService/V1/json/categoryRanking';
 const APP_ID = ENV.CLIENT_ID;
 
 // リクエスト開始
-const startRequest = categoryId => ({
+const startRequest = category => ({
   type: 'START_REQUEST',
   payload: {
-    categoryId,
+    category,
   },
 });
 
 // レスポンス受信
-const receiveData = (categoryId, error, response) => ({
+const receiveData = (category, error, response) => ({
   type: 'RECEIVE_DATA',
   payload: {
-    categoryId,
+    category,
     error,
     response,
   },
 });
 
 // リクエスト完了
-const finishRequest = categoryId => ({
+const finishRequest = category => ({
   type: 'FINISH_REQUEST',
   payload: {
-    categoryId,
+    category,
   },
 });
 
 // ランキングを取得
 export const fetchRanking = categoryId => (
-  async (dispatch) => {
-    dispatch(startRequest(categoryId));
+  async (dispatch, getState) => {
+    const { categories } = getState().shopping;
+    const category = categories.find(eachCategory => eachCategory.id === categoryId);
+    console.log(category);
+    // 対応するデータがない場合はトップページにリダイレクト
+    if (typeof category === 'undefined') {
+      dispatch(replace('/'));
+      return;
+    }
+
+    dispatch(startRequest(category));
 
     const queryString = qs.stringify({
       appid: APP_ID,
@@ -44,13 +54,11 @@ export const fetchRanking = categoryId => (
     try {
       const response = await fetchJsonp(`${API_URL}?${queryString}`);
       const data = await response.json();
-      console.log(data);
-      dispatch(receiveData(categoryId, null, data));
+      dispatch(receiveData(category, null, data));
     } catch (err) {
-      console.log(err);
-      dispatch(receiveData(categoryId, err));
+      dispatch(receiveData(category, err));
     }
-    dispatch(finishRequest(categoryId));
+    dispatch(finishRequest(category));
   }
 );
 

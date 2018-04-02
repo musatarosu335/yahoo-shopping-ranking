@@ -4,6 +4,9 @@ import { fetchRanking } from '../actions/Ranking';
 
 const mapStateToProps = (state, ownProps) => ({
   categoryId: ownProps.categoryId,
+  category: state.Ranking.category,
+  ranking: state.Ranking.ranking,
+  error: state.Ranking.error,
 });
 
 const mapDispatchToProps = dispatch => ({
